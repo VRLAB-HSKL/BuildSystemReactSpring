@@ -1,4 +1,4 @@
-package com.hskl.buildsystem.data;
+package com.hskl.buildsystem.dal;
 
 import com.hskl.buildsystem.data.buildsystem.Scene;
 import com.hskl.buildsystem.data.buildsystem.UnityProject;
@@ -10,4 +10,5 @@ public interface DALBuildsystem {
     List<Scene> getAllScenesFromProject(String projectName);
     void createUnityProject(UnityProject unityProject);
     void deleteUnityProject(UnityProject unityProject);
+    List<UnityProject> getAllProjects();
 }

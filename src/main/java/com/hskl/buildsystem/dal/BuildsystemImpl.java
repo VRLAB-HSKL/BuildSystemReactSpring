@@ -1,4 +1,4 @@
-package com.hskl.buildsystem.data;
+package com.hskl.buildsystem.dal;
 
 import com.hskl.buildsystem.data.buildsystem.Scene;
 import com.hskl.buildsystem.data.buildsystem.UnityProject;
@@ -38,6 +38,11 @@ public class BuildsystemImpl implements DALBuildsystem {
     @Override
     public void deleteUnityProject(UnityProject unityProject) {
         mongoTemplate.remove(unityProject);
+    }
+
+    @Override
+    public List<UnityProject> getAllProjects() {
+        return mongoTemplate.findAll(UnityProject.class);
     }
 
 }
