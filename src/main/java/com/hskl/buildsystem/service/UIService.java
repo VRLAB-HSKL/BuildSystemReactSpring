@@ -86,7 +86,7 @@ public class UIService {
     /**
      * creates a UnityProject in Database
      */
-    @GetMapping("/createunityproject")
+    @GetMapping("/api/createunityproject")
     public void createUnityProject() {
         buildsystemDAL.createUnityProject(initTestOneUnityProject());
         buildsystemDAL.createUnityProject(initTestTwoUnityProject());
@@ -97,13 +97,13 @@ public class UIService {
      * returns all stored unityprojects from database
      * @return UnityProject
      */
-    @RequestMapping("/findunityproject")
+    @RequestMapping("/api/findunityproject")
     public UnityProject findUnityProject(){
         UnityProject unityProject = buildsystemDAL.searchByName("Test_Unity_Project");
         return unityProject;
     }
 
-    @RequestMapping("/getallunityprojects")
+    @RequestMapping("/api/getallunityprojects")
     public List<UnityProject> findAllUnityProjects() {
         return buildsystemDAL.getAllProjects();
     }
@@ -111,7 +111,7 @@ public class UIService {
     /**
      * delete a specific UnityProject
      */
-    @RequestMapping("/deleteunityproject")
+    @RequestMapping("/api/deleteunityproject")
     public void removeUnityProject() {
         UnityProject unityProject = buildsystemDAL.searchByName("Test_Unity_Project");
         buildsystemDAL.deleteUnityProject(unityProject);

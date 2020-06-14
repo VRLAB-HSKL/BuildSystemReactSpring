@@ -1,26 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+class App extends Component {
+
+  state = {
+    isLoading: true,
+    unityprojects: [{
+        unityScenes: []
+    }] 
+  };
+
+  async componentDidMount() {
+    const response = await fetch('/api/getallunityprojects');
+    const body = await response.json();
+    this.setState({ unityprojects: body, isLoading: false})
+  }
+
+  render() {
+
+    const {unityprojects, isLoading} = this.state;
+
+
+    if (isLoading) {
+      return <p>Loading...</p>
+    }
+
+    console.log(unityprojects.unityScenes)
+
   return (
-    <div className="App">
+    <div className = "App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="App-intro">
+          <h2>Loaded UnityProjects</h2>
+          {unityprojects.map(unityproject => 
+            <div key={unityproject.ID}>
+               {unityproject.unityProjectName}
+              
+            </div>
+            )}
+        </div>
       </header>
+    
     </div>
   );
+  }
 }
 
 export default App;
