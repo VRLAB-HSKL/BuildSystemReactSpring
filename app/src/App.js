@@ -1,50 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Home from './Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import UnityProjectList from './components/UnityProjectList';
 
 class App extends Component {
 
-  state = {
-    isLoading: true,
-    unityprojects: [{
-        unityScenes: []
-    }] 
-  };
-
-  async componentDidMount() {
-    const response = await fetch('/api/getallunityprojects');
-    const body = await response.json();
-    this.setState({ unityprojects: body, isLoading: false})
-  }
-
   render() {
 
-    const {unityprojects, isLoading} = this.state;
-
-
-    if (isLoading) {
-      return <p>Loading...</p>
-    }
-
-    console.log(unityprojects.unityScenes)
-
-  return (
-    <div className = "App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div className="App-intro">
-          <h2>Loaded UnityProjects</h2>
-          {unityprojects.map(unityproject => 
-            <div key={unityproject.ID}>
-               {unityproject.unityProjectName}
-              
-            </div>
-            )}
-        </div>
-      </header>
-    
-    </div>
-  );
+    return (
+      <Router>
+        <Switch>
+          <Route path='/' exact={true} component={Home}/>
+          <Route path='/projectmanagement' exact={true} component={UnityProjectList}/>
+        </Switch>
+      </Router>
+    )
   }
 }
 
