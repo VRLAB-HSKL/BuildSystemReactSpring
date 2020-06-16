@@ -32,9 +32,11 @@ class UnitProjectList extends Component {
 
         const projectsList = unityprojects.map(project => {
             const name = `${project.unityProjectName || ''} `;
-            return <tr key={project.ID}>
-                <td style={{whiteSpace: 'nowrap'}}>{project.ID}</td>
+            const id = `${project.id || ''} `;
+            return <tr key={project.id}>
+                <td style={{whiteSpace: 'nowrap'}}>{id}</td>
                 <td>{name}</td>
+                
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/unityprojects"}>Edit</Button>
@@ -57,10 +59,9 @@ class UnitProjectList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="20%">ID</th>
-                            <th width="20%">Name</th>
-                            <th>Events</th>
-                            <th width="10%">Actions</th>
+                            <th width="10%">ID</th>
+                            <th width="60%">Name</th>
+                            <th width="30%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
