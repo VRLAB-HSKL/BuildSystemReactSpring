@@ -25,19 +25,19 @@ public class PersonService {
     private void initPersons() {
         personList = new ArrayList<Person>();
         Person a = new Person();
-        a.setId(seqService.generateSequence(a.SEQUENCE_NAME));
+        a.setId(seqService.generateSequence(Person.SEQUENCE_NAME));
         a.setFirstName("Harald");
         a.setLastName("Horn");
         a.setAge(47);
 
         Person b = new Person();
-        b.setId(seqService.generateSequence(b.SEQUENCE_NAME));
+        b.setId(seqService.generateSequence(Person.SEQUENCE_NAME));
         b.setFirstName("Mali");
         b.setLastName("Bu");
         b.setAge(36);
 
         Person c = new Person();
-        c.setId(seqService.generateSequence(c.SEQUENCE_NAME));
+        c.setId(seqService.generateSequence(Person.SEQUENCE_NAME));
         c.setFirstName("captain");
         c.setLastName("morgan");
         c.setAge(21);
