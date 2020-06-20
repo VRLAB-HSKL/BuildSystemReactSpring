@@ -2,6 +2,7 @@ package com.hskl.buildsystem.config;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -15,10 +16,12 @@ import java.io.IOException;
 public class MongoDBConfiguration {
 
     //MongoDB-IP
-    private static final String MONGO_DB_URL = "mongodb://127.0.0.1:27017";
+    @Value("${buildsystem.mongo.db.url}")
+    private String MONGO_DB_URL;
 
     //MongoDB-Database-Name
-    private static final String MONGO_DB_NAME = "mydatabase";
+    @Value("${buildsystem.mongo.db.name}")
+    private String MONGO_DB_NAME;
 
     /***
      * Setup a @MongoClient an bind it to a given URL
@@ -38,6 +41,6 @@ public class MongoDBConfiguration {
      */
     @Bean
     public MongoTemplate mongoTemplate() throws IOException {
-        return new MongoTemplate(mongoClient(), "mydatabase");
+        return new MongoTemplate(mongoClient(), MONGO_DB_NAME);
     }
 }
