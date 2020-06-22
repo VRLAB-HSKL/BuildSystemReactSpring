@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 @Component
 public class UnityBuilder {
@@ -25,7 +27,7 @@ public class UnityBuilder {
     private String cmd;
 
     //the logger
-    private final Logger log = LoggerFactory.getLogger(UnityService.class);
+    private final Logger log = LoggerFactory.getLogger(UnityBuilder.class);
 
     public void createUnityProject() {
         Runtime rt = Runtime.getRuntime();
@@ -36,6 +38,14 @@ public class UnityBuilder {
         String path2 = "python G:\\MasterThesis-Dev\\Workspace\\BuildSystemReactSpring\\src\\main\\resources\\python\\CreateUnityProject.py";
         try{
             Process extractProcess = rt.exec(cmd);
+            BufferedReader bfr = new BufferedReader(new InputStreamReader(extractProcess.getInputStream()));
+            StringBuilder buffer = new StringBuilder();
+            String line = null;
+            while ((line = bfr.readLine()) != null){
+                buffer.append(line);
+            }
+            log.info("output: "+buffer.toString());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
