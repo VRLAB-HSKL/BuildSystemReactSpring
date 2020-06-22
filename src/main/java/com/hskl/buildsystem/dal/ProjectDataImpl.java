@@ -1,10 +1,9 @@
 package com.hskl.buildsystem.dal;
 
 import com.hskl.buildsystem.data.buildsystem.ui.data.ProjectData;
+import com.hskl.buildsystem.data.seq.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +14,9 @@ public class ProjectDataImpl implements DALProjectData {
     //MongoDB Template
     @Autowired
     MongoTemplate mongoTemplate;
+
+    @Autowired
+    SequenceGeneratorService seqService;
 
     /**
      * find all project data in MongoDB
@@ -44,6 +46,7 @@ public class ProjectDataImpl implements DALProjectData {
      */
     @Override
     public void createProjectData(ProjectData projectData) {
+        projectData.setiD(seqService.generateSequence(ProjectData.SEQUENCE_NAME));
         mongoTemplate.save(projectData);
     }
 
@@ -64,6 +67,9 @@ public class ProjectDataImpl implements DALProjectData {
      */
     @Override
     public void deleteProjectData(Long iD) {
-        mongoTemplate.remove(new Query(Criteria.where("iD").is(iD)));
+        ProjectData toDelete = mongoTemplate.findById(iD, ProjectData.class);
+        assert toDelete != null;
+        mongoTemplate.remove(toDelete);
+        seqService.decreesSequence(ProjectData.SEQUENCE_NAME);
     }
 }
