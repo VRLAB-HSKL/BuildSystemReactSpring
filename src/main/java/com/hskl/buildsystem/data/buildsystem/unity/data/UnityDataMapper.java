@@ -20,7 +20,7 @@ public class UnityDataMapper {
      * Convert received unity data to ProjectData
      * @param unityData received unity project informations
      */
-    public void convertDataToProjectData(UnityData unityData) {
+    public ProjectData convertDataToProjectData(UnityData unityData) {
         ProjectData projectData = new ProjectData();
         projectData.setiD(seqService.generateSequence(ProjectData.SEQUENCE_NAME));
         projectData.setName(unityData.getProjectName());
@@ -39,5 +39,6 @@ public class UnityDataMapper {
         projectData.setStatus(status);
         projectData.setGitUrl(unityData.getGitUrl());
         projectData.setUnityVersion(unityData.getUnityVersion());
+        return projectData;
     }
 }
