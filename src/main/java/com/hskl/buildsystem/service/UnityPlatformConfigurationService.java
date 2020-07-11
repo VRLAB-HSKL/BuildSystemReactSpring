@@ -5,6 +5,7 @@ import com.hskl.buildsystem.data.buildsystem.unity.data.UnityPlatformConfigurati
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +32,10 @@ public class UnityPlatformConfigurationService {
     public void createPlatformConfigurationData(@RequestBody UnityPlatformConfigurationData data) {
         log.info("Request from Unity: {}", data);
         unityPlatformConfigurationData.addUnityConfigurationData(data);
+    }
+
+    @GetMapping("/api/unity/getallplatformconfigurationservice")
+    public List<UnityPlatformConfigurationData> getAllPlatformConfigurationData() {
+        return unityPlatformConfigurationData.getAllConfigurationDatas();
     }
 }

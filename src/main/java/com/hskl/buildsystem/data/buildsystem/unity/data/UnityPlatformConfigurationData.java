@@ -47,6 +47,8 @@ public class UnityPlatformConfigurationData {
     //buildtarget like Android, Win-x64-x32
     private String buildTarget;
 
+    //unity scene index
+    private int index;
     /***
      * default ctor
      */
@@ -66,10 +68,11 @@ public class UnityPlatformConfigurationData {
      * @param middlevr
      * @param buildTargetGroup
      * @param buildTarget
+     * @param index
      */
     public UnityPlatformConfigurationData(String configurationName, String sceneName, String projectName,
                                           String description, boolean viu, boolean gvr, boolean wavevr,
-                                          boolean middlevr, String buildTargetGroup, String buildTarget) {
+                                          boolean middlevr, String buildTargetGroup, String buildTarget, int index) {
         this.configurationName = configurationName;
         this.sceneName = sceneName;
         this.projectName = projectName;
@@ -80,6 +83,7 @@ public class UnityPlatformConfigurationData {
         this.middlevr = middlevr;
         this.buildTargetGroup = buildTargetGroup;
         this.buildTarget = buildTarget;
+        this.index = index;
     }
 
     /***
@@ -95,10 +99,11 @@ public class UnityPlatformConfigurationData {
      * @param middlevr
      * @param buildTargetGroup
      * @param buildTarget
+     * @param index
      */
     public UnityPlatformConfigurationData(long id, String configurationName, String sceneName, String projectName,
                                           String description, boolean viu, boolean gvr, boolean wavevr, boolean middlevr,
-                                          String buildTargetGroup, String buildTarget) {
+                                          String buildTargetGroup, String buildTarget, int index) {
         this.id = id;
         this.configurationName = configurationName;
         this.sceneName = sceneName;
@@ -110,6 +115,7 @@ public class UnityPlatformConfigurationData {
         this.middlevr = middlevr;
         this.buildTargetGroup = buildTargetGroup;
         this.buildTarget = buildTarget;
+        this.index = index;
     }
 
     /***
@@ -289,6 +295,22 @@ public class UnityPlatformConfigurationData {
     }
 
     /***
+     * get scene index
+     * @return index
+     */
+    public int getIndex() {
+        return index;
+    }
+
+    /***
+     * set scene index
+     * @param index
+     */
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    /***
      * toString Method
      * @return class to string
      */
@@ -306,6 +328,7 @@ public class UnityPlatformConfigurationData {
                 ", middlevr=" + middlevr +
                 ", buildTargetGroup='" + buildTargetGroup + '\'' +
                 ", buildTarget='" + buildTarget + '\'' +
+                ", index=" + index +
                 '}';
     }
 }
