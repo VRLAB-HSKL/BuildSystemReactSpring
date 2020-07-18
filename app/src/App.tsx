@@ -4,6 +4,7 @@ import Home from './Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProjectDataList from './components/ProjectDataList';
 import EditProjectData from './components/EditProjectData';
+import UnityProjects from './components/UnityProjects';
 import UnityConfigs from './components/UnityProjectConfiguration';
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
           <Route path='/' exact={true} component={Home}/>
           <Route path='/projectdata' exact={true} component={ProjectDataList}/>
           <Route path='/projectdata/:id' component={EditProjectData}/>
-          <Route path='/unityconfigs' component={UnityConfigs}/>
+          <Route path='/unityprojects' component={UnityProjects}/>
+          <Route path='/unityconfigs/:projectName' component={UnityConfigs}/>
         </Switch>
       </Router>
     )
