@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * The class manages the different requests for Unity Project data between the application and MongoDB
+ */
 @Repository
 public class ProjectDataImpl implements DALProjectData {
 
@@ -15,6 +18,7 @@ public class ProjectDataImpl implements DALProjectData {
     @Autowired
     MongoTemplate mongoTemplate;
 
+    //Generate sequence service
     @Autowired
     SequenceGeneratorService seqService;
 

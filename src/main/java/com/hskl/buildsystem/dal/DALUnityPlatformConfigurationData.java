@@ -5,6 +5,9 @@ import com.hskl.buildsystem.data.buildsystem.unity.data.UnityProjectNames;
 
 import java.util.List;
 
+/**
+ * This interface provides the data access layer to save and load platform configurations
+ */
 public interface DALUnityPlatformConfigurationData {
 
     /**
@@ -14,7 +17,7 @@ public interface DALUnityPlatformConfigurationData {
     void addUnityConfigurationData(UnityPlatformConfigurationData data);
 
     /**
-     * returns a List which contains all configurations
+     * returns a List which contains all saved platform configurations
      * @return
      */
     List<UnityPlatformConfigurationData> getAllConfigurationDatas();

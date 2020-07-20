@@ -16,56 +16,94 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class provides the REST interfaces which contain Unity project information.
+ */
 @RestController
 public class UIDataService {
 
+    //testing list which contains test data
     private List<ProjectData> projectDataList;
 
     //the logger
     private final Logger log = LoggerFactory.getLogger(UnityService.class);
 
+    //Data Access Layer for ProjectData
     @Autowired
     ProjectDataImpl projectDataDAL;
 
+    //Sequence Service
     @Autowired
     SequenceGeneratorService seqService;
 
+    /**
+     * init Testdata
+     */
     @GetMapping("/api/data/testdata")
     public void createtestdata() {
         initTestData();
     }
 
+    /**
+     * Provides ProjectData by ID
+     * @param iD
+     * @return ProjectData
+     */
     @GetMapping("/api/data/findById")
     public ProjectData findById(@RequestParam(name="id") Long iD){
         return projectDataDAL.findById(iD);
     }
 
+    /**
+     * Find all Project datas stored in mongodb
+     * @return List with all stored project Datas
+     */
     @GetMapping("/api/data/findAll")
     public List<ProjectData> findAll() {
         return  projectDataDAL.findAll();
     }
 
+    /**
+     * Creates / Stored a new ProjectData
+     * @param data
+     */
     @GetMapping("/api/data/create")
     public void createProjectData(ProjectData data) {
         projectDataDAL.createProjectData(data);
     }
 
+    /**
+     * update specific Data
+     * @param data
+     */
     @GetMapping("/api/data/updateData")
     public void updateProjectData(ProjectData data) {
         projectDataDAL.updateProjectData(data);
     }
 
+    /**
+     * Delete unity project Data by id
+     * @param iD
+     */
     @GetMapping("/api/data/deleteById")
     public void deleteDataById(@RequestParam(name="id") Long iD) {
         log.info("received id: " + iD);
         projectDataDAL.deleteProjectData(iD);
     }
 
+    /**
+     *  provides a List witch contains all stored ProjectData's
+     *  For testing only. Becaus it returns the List from this class
+     * @return List with all ProjectDatas
+     */
     @GetMapping("/api/data/getallprojectdata")
     public List<ProjectData> getProjectData() {
         return  projectDataList;
     }
 
+    /**
+     * test data for unity projects
+     */
     public void initTestData () {
 
         projectDataList = new ArrayList<ProjectData>();

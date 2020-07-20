@@ -7,6 +7,9 @@ import EditProjectData from './components/EditProjectData';
 import UnityProjects from './components/UnityProjects';
 import UnityConfigs from './components/UnityProjectConfiguration';
 
+/*
+ * This class provides the routing between unity Project information and unity platform configurations
+ */
 class App extends Component {
   render() {
     return (

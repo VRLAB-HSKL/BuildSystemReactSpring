@@ -4,6 +4,9 @@ import AppNavbar from './components/AppNavbar';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 
+/**
+ * This class provides two buttons that refer to the Unity Project information and unity platform configurations
+ */
 class Home extends Component {
   render() {
     return (

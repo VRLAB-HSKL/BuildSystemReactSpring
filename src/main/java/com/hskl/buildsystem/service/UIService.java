@@ -15,15 +15,19 @@ import java.util.List;
 /**
  * This class provides the REST-Server for Buildsystem-UI to Buildsystem-Core
  * communication
+ *
+ * This class is currently not used
  */
 @RestController
 public class UIService {
 
     private static final String PROJECT_SEQ_KEY = "unitproject";
 
+    //data access layer for project and git informations
     @Autowired
     BuildsystemImpl buildsystemDAL;
 
+    //mongodb sequence services
     @Autowired
     SequenceGeneratorService seqService;
 

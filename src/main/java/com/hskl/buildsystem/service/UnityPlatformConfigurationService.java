@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /***
- *
+ * This class provides the REST interfaces of the unity platform configurations
  */
 @RestController
 public class UnityPlatformConfigurationService {
@@ -19,6 +19,7 @@ public class UnityPlatformConfigurationService {
     //the logger
     private final Logger log = LoggerFactory.getLogger(UnityPlatformConfigurationService.class);
 
+    //Data access layer for unity platform configurations
     @Autowired
     private UnityPlatformConfigurationDataImpl unityPlatformConfigurationData;
 
@@ -36,8 +37,8 @@ public class UnityPlatformConfigurationService {
     }
 
     /**
-     *
-     * @return
+     * this method provides all platform configurations
+     * @return List with all stored platform configurations
      */
     @GetMapping("/api/unity/getallplatformconfigurationservice")
     public List<UnityPlatformConfigurationData> getAllPlatformConfigurationData() {
@@ -45,9 +46,9 @@ public class UnityPlatformConfigurationService {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * this method provides a specific platform configuration based on an id
+     * @param id mongodb id
+     * @return unity platform configuration
      */
     @GetMapping("/api/unity/getplatformconfigurationbyid")
     public UnityPlatformConfigurationData getOneConfig(@RequestParam(name="id") Long id) {
@@ -55,13 +56,18 @@ public class UnityPlatformConfigurationService {
     }
 
     /**
-     *
+     * this method provides a project overview based on the available platform configurations
      */
     @GetMapping("/api/unity/getplatformconfigurationprojectnames")
     public List<UnityProjectNames> getConfigurationProjects() {
         return unityPlatformConfigurationData.getAllUnityProjectNames();
     }
 
+    /**
+     * this method delivers all platform configurations for a selected project
+     * @param projectName project name
+     * @return List with all platform configurations to the selected project
+     */
     @GetMapping("/api/unity/getplatformconfigurationbyprojectname")
     public List<UnityPlatformConfigurationData> getConfigurationsByProjectName(@RequestParam(name="projectName") String projectName) {
         return unityPlatformConfigurationData.getUnityConfigurationDataByProjectName(projectName);

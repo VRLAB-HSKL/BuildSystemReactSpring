@@ -26,6 +26,9 @@ interface IState {
   }]
 }
 
+/**
+ * This class represents the available platform configurations.
+ */
 class UnityProjectConfiguration extends Component<IProps, IState>{
 
     constructor(props: IProps) {

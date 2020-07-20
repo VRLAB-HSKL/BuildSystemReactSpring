@@ -11,17 +11,24 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class provides the REST interfaces for the later registration service.
+ * The rest of the interfaces currently only return predefined people,
+ * and there is currently no communication with the database
+ */
 @RestController
 public class PersonService {
 
-    @Autowired
-    MongoTemplate mongoTemplate;
-
+    //sequence service for mongodb
     @Autowired
     SequenceGeneratorService seqService;
 
+    //contains all test persons
     List<Person> personList;
 
+    /**
+     * init test persons
+     */
     private void initPersons() {
         personList = new ArrayList<Person>();
         Person a = new Person();
@@ -48,11 +55,18 @@ public class PersonService {
 
     }
 
+    /**
+     * creates hard codes persons for testing
+     */
     @GetMapping("/api/persons/createpersons")
     public void createPersons() {
         initPersons();
     }
 
+    /**
+     * return a list with all test persons. No data stored in monog db yet.
+     * @return List with all Persons.
+     */
     @GetMapping("/api/persons/getallpersons")
     public List<Person> getPersons() {
         return  personList;

@@ -10,11 +10,12 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This class provides a transformation from Unity Project to Project Data
+ */
 @Component
 public class UnityDataMapper {
-
-    @Autowired
-    SequenceGeneratorService seqService;
 
     /**
      * Convert received unity data to ProjectData
@@ -22,7 +23,6 @@ public class UnityDataMapper {
      */
     public ProjectData convertDataToProjectData(UnityData unityData) {
         ProjectData projectData = new ProjectData();
-        projectData.setiD(seqService.generateSequence(ProjectData.SEQUENCE_NAME));
         projectData.setName(unityData.getProjectName());
         projectData.setDescription(unityData.getDescription());
         Platform android = new Platform();

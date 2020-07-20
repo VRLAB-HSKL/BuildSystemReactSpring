@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class manages the different requests between the application and MongoDB.
+ * provides the data access layer to save and load platform configurations
+ */
 @Repository
 public class UnityPlatformConfigurationDataImpl implements DALUnityPlatformConfigurationData{
 
@@ -20,15 +24,17 @@ public class UnityPlatformConfigurationDataImpl implements DALUnityPlatformConfi
     @Autowired
     MongoTemplate mongoTemplate;
 
+    //sequence service
     @Autowired
     SequenceGeneratorService seqService;
 
+    //contains all project names of the configurations in the mongodb
     private final List<UnityProjectNames> unityProjectNamesList = new ArrayList<UnityProjectNames>();
 
     /**
      * Add a unity platform configuration to MongoDB
      *
-     * @param data
+     * @param data - platform configuration
      */
     @Override
     public void addUnityConfigurationData(UnityPlatformConfigurationData data) {
@@ -37,7 +43,7 @@ public class UnityPlatformConfigurationDataImpl implements DALUnityPlatformConfi
     }
 
     /**
-     * returns a List which contains all configurations
+     * returns a List which contains all saved platform configurations
      *
      * @return List<UnityPlatformConfigurationData>
      */
@@ -88,6 +94,11 @@ public class UnityPlatformConfigurationDataImpl implements DALUnityPlatformConfi
         return mongoTemplate.find(query, UnityPlatformConfigurationData.class);
     }
 
+    /**
+     * This method uses the transferred parameters to check whether this project already exists.
+     * If not, it will be added to the list
+     * @param unityProjectNames - unity project name
+     */
     private void updateProjectNamesList(UnityProjectNames unityProjectNames) {
 
         boolean exists = false;

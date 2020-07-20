@@ -4,6 +4,9 @@ import com.hskl.buildsystem.data.buildsystem.ui.data.ProjectData;
 
 import java.util.List;
 
+/**
+ * The Interface provides the different requests for Unity Project data between the application and MongoDB
+ */
 public interface DALProjectData {
 
     /**
