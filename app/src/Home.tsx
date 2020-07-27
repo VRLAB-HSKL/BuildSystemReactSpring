@@ -13,8 +13,8 @@ class Home extends Component {
       <div>
         <AppNavbar/>
         <Container fluid>
-          <Button color="link"><Link to="/projectdata">Project Data</Link></Button>
-          <Button color="link"><Link to="/unityprojects">Unity Projects</Link></Button>
+          <Button color="link"><Link to="/projectdata">Project Manager</Link></Button>
+          <Button color="link"><Link to="/unityprojects">Unity Project Configurations</Link></Button>
         </Container>
       </div>
     );
